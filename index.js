@@ -20,7 +20,7 @@ function emailValidator() {
 }
 
 email.addEventListener('focus', (event) => {
-  event.target.style.background = 'pink';
+  event.target.style.background = 'rgb(213, 236, 217)';
 });
 
 email.addEventListener('blur', (event) => {
@@ -47,7 +47,7 @@ function passValidator() {
 }
 
 pass.addEventListener('focus', (event) => {
-  event.target.style.background = 'pink';
+  event.target.style.background = 'rgb(213, 236, 217)';
 });
 
 pass.addEventListener('blur', (event) => {
@@ -71,7 +71,7 @@ function pass2Validator() {
 }
 
 pass2.addEventListener('focus', (event) => {
-  event.target.style.background = 'pink';
+  event.target.style.background = 'rgb(213, 236, 217)';
 });
 
 pass2.addEventListener('blur', (event) => {
@@ -84,7 +84,7 @@ function formValidator() {
     p.textContent = 'Some fields aren`t filled';
     btn1.after(p);
   } else if (pass.value !== pass2.value) {
-    p.textContent = 'Passwords doesn`t match';
+    p.textContent = 'Passwords don`t match';
     btn1.after(p);
   } else if (
     !pass.value.match(/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()-_+=<>?]).{8,}$/g)
