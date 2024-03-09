@@ -9,7 +9,11 @@ function emailValidator() {
     email.style.border = 'solid 2px red';
     p.textContent = 'Email is required';
     email.after(p);
-  } else if (!email.value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
+  } else if (
+    !email.value.match(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/g
+    )
+  ) {
     email.style.border = 'solid 2px red';
     p.textContent = 'Email is incorrect';
     email.after(p);
@@ -83,6 +87,20 @@ function formValidator() {
   if (pass2.value === '' || pass.value === '' || email.value === '') {
     p.textContent = 'Some fields aren`t filled';
     btn1.after(p);
+    //if email and pass and confirm is incorrect
+  } else if (
+    !email.value.match(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/g
+    ) &&
+    !pass.value.match(
+      /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()-_+=<>?]).{8,}$/g
+    ) &&
+    pass.value !== pass2.value
+  ) {
+    p.innerHTML =
+      '<p>Email is incorrect and password must contain at least 8 symbols,<br /> 1 digit and 1 special symbol and passwords don`t match</p>';
+    btn1.after(p);
+    //===================
   } else if (pass.value !== pass2.value) {
     p.textContent = 'Passwords don`t match';
     btn1.after(p);
@@ -104,4 +122,33 @@ btn1.addEventListener('click', (event) => {
     return console.log('the form has sent'); //
   }
   event.preventDefault();
+});
+
+// =====================================================================================
+//eye1:
+const togglePassword = document.querySelector('.password-toggle-icon i');
+togglePassword.addEventListener('click', function () {
+  if (pass.type === 'password') {
+    pass.type = 'text';
+    togglePassword.classList.remove('fa-eye');
+    togglePassword.classList.add('fa-eye-slash');
+  } else {
+    pass.type = 'password';
+    togglePassword.classList.remove('fa-eye-slash');
+    togglePassword.classList.add('fa-eye');
+  }
+});
+
+//eye2:
+const togglePassword2 = document.querySelector('.password-toggle-icon-2 i');
+togglePassword2.addEventListener('click', function () {
+  if (pass2.type === 'password') {
+    pass2.type = 'text';
+    togglePassword2.classList.remove('fa-eye');
+    togglePassword2.classList.add('fa-eye-slash');
+  } else {
+    pass2.type = 'password';
+    togglePassword2.classList.remove('fa-eye-slash');
+    togglePassword2.classList.add('fa-eye');
+  }
 });
